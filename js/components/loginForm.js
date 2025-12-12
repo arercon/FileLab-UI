@@ -39,6 +39,12 @@ export function renderLoginForm(containerId) {
                 module.renderRegisterForm(containerId);
             });
         }
+
+        if (e.target.id === "forgot-password-link") {
+            import('./forgotPasswordForm.js').then(module => {
+                module.renderForgotPasswordForm(containerId);
+            });
+        }
     });
 }
 

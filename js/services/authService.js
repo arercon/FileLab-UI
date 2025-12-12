@@ -35,7 +35,7 @@ export async function register(email, password) {
 
 
 export async function forgotPassword(email) {
-    const response = await fetch(`${BASE_URL}/forgot-password`, {
+    const response = await fetch(`${BASE_URL}/forgotPassword`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email })

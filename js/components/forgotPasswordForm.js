@@ -24,7 +24,7 @@ export function renderForgotPasswordForm(containerId) {
                 else {
                     const data = await forgotPassword(email);
                     console.log("Erfolgreich:", data);
-                    showForgotPasswordSuccess(containerId);
+                    showForgotPasswordSuccess(containerId, email);
                 }
             } 
             catch (error) {
@@ -38,5 +38,21 @@ export function renderForgotPasswordForm(containerId) {
                 module.renderLoginForm(containerId);
             });
         }
+    });
+}
+
+function showForgotPasswordSuccess(containerId, email) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+        <div class="form-box success-message">
+            <h2>✅ Passwort zurückgesetzt!</h2>
+            <p>Eine E-Mail zum Zurücksetzen deines Passworts wurde an <b>${email}</b> gesendet.</p>
+            <button id="to-login-btn">Zum Login</button>
+        </div>
+    `;
+    document.getElementById("to-login-btn").addEventListener("click", () => {
+        import('./loginForm.js').then(module => {
+            module.renderLoginForm(containerId);
+        });
     });
 }
