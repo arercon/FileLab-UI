@@ -3,6 +3,7 @@ import { forgotPassword, login } from '../services/authService.js';
 export function renderForgotPasswordForm(containerId) {
     const container = document.getElementById(containerId);
     container.innerHTML = `
+        <h1 class="centered">FileLab</h1>
         <div class="form-box">
             <h2>Passwort zurücksetzen</h2>
             <input type ="text" id="fp-email" placeholder="Email" />

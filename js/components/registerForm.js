@@ -3,6 +3,7 @@ import { register } from '../services/authService.js';
 export function renderRegisterForm(containerId) {
     const container = document.getElementById(containerId);
     container.innerHTML = `
+        <h1 class="centered">FileLab</h1>
         <div class="form-box">
             <h2>Registrieren</h2>
             <input type ="text" id="rf-email" placeholder="Email" />
@@ -17,6 +18,11 @@ export function renderRegisterForm(containerId) {
             try {
                 const email = document.getElementById("rf-email").value;
                 const password = document.getElementById("rf-password").value;
+
+                if (!checkIfDataValid(email, password)) {
+                    return;
+                }
+
                 const data = await register(email, password);
                 console.log("Erfolgreich:", data);
                 showRegisterSuccess(containerId);
@@ -34,6 +40,19 @@ export function renderRegisterForm(containerId) {
         }
     });
 }
+
+function checkIfDataValid(email, password) {
+    if (email === "") {
+        alert("Bitte gib eine Email ein.");
+        return false;
+    }
+
+    if (password === "") {
+        alert("Bitte gib ein Passwort ein.");
+        return false;
+    }
+}
+
 
 function showRegisterSuccess(containerId) {
     const container = document.getElementById(containerId);
